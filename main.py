@@ -1,5 +1,6 @@
 import pygame, sys
 from states.game_state import GameState
+import asyncio
 
 # pygame setup
 pygame.init()
@@ -15,9 +16,12 @@ pygame.mixer.music.play(1, start=5)
 
 game = GameState(screen)
 
-while True:
-    game.state_manager()
-    clock.tick(60)  # limits FPS to 60
+async def main():
+    while True:
+        game.state_manager()
+        clock.tick(60)  # limits FPS to 60
+        await asyncio.sleep(0)
 
+asyncio.run(main())
 
 
